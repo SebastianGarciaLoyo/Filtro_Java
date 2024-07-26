@@ -3,6 +3,8 @@ package infrastucture.in;
 import java.util.Scanner;
 
 import application.CreateSkillUseCase;
+import application.verifiers.CheckString;
+import domain.entity.Skill;
 
 public class SkillController {
     private CreateSkillUseCase createSkillUseCase;
@@ -25,15 +27,15 @@ public class SkillController {
 
         switch (option) {
             case 1:
-            
+                CrearHabilidad(scanner);
                 break;
             
             case 2:
-
+                AsignarSkill(scanner);
                 break;
 
             case 3:
-
+                ConsultarPorSkill(scanner);
                 break;
             
             case 4:
@@ -44,5 +46,45 @@ public class SkillController {
                 break;
         }
     }
+
+        private void CrearHabilidad(Scanner scanner) {
+
+            boolean checkname = false;
+            String name = "";
+
+            while (!checkname) {
+                System.out.println("Ingrese el nombre de la habilidad: ");
+                System.out.println("Escriba salir si quiere cancelar el registro");
+                System.out.println("=======================================");
+                try{
+                name = CheckString.check(scanner.nextLine());
+                if (name.equalsIgnoreCase("salir")) {
+                    System.out.println("Registro Cancelado");
+                    return;
+                } else {
+                checkname = true;
+                }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+            }
+
+            
+
+            Skill skill = new Skill();
+            skill.setName(name);
+
+            createSkillUseCase.execute(skill);
+
+            System.out.println("Habilidad registrada exitosamente!");
+        }
+
+        private void ConsultarPorSkill(Scanner scanner) {
+            
+        }
+
+        private void AsignarSkill(Scanner scanner) {
+        
+        }
 
 }

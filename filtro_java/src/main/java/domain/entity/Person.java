@@ -7,12 +7,12 @@ public class Person {
     private String address;
     private int age;
     private String email;
-    private String gender;
+    private int gender;
     
     public Person() {
     }
 
-    public Person(String name, String lastname, int id_city, String address, int age, String email, String gender) {
+    public Person(String name, String lastname, int id_city, String address, int age, String email, int gender) {
         this.name = name;
         this.lastname = lastname;
         this.id_city = id_city;
@@ -70,13 +70,14 @@ public class Person {
         this.email = email;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
+
 
     
 

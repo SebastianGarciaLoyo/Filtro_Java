@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import application.CreatePersonUseCase;
 import application.CreateSkillUseCase;
+import application.DeletePersonUseCase;
+import application.UpdatePersonUseCase;
 import domain.service.PersonService;
 import domain.service.SkillService;
 import infrastucture.in.PersonController;
@@ -17,9 +19,11 @@ public class Main {
 
         while (true) {
             System.out.println("Bienvenido!");
+            System.out.println("=================");
             System.out.println("1. Personas");
             System.out.println("2. Habilidades");
             System.out.println("3. Salir");
+            System.out.println("=================");
 
             int option = Integer.parseInt(scanner.nextLine());
 
@@ -27,7 +31,11 @@ public class Main {
                 case 1:
                     PersonService personService = new PersonRepository();
                     CreatePersonUseCase createPersonUseCase = new CreatePersonUseCase(personService);
+                    DeletePersonUseCase deletePersonUseCase = new DeletePersonUseCase(personService);
+                    UpdatePersonUseCase updatePersonUseCase = new UpdatePersonUseCase(personService);
                     PersonController personController = new PersonController(createPersonUseCase);
+                    personController = new PersonController(deletePersonUseCase);
+                    personController  = new PersonController(updatePersonUseCase);
                     personController.MenuPersona();
 
                     break;
